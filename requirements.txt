@@ -1,0 +1,4 @@
+flask==2.0.1
+werkzeug==2.0.1
+streamlit==1.32.0
+pillow==10.2.0 
