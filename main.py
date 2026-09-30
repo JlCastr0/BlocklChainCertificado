@@ -1,14 +1,15 @@
 # main.py
 # Demonstração em linha de comando da Blockchain de Certificados com Smart Contract
 import hashlib
-from blockchain import Blockchain
-from certificate_data import CertificateData
-from smart_contract import AcademicSmartContract
+from core.blockchain import Blockchain
+from core.certificate_data import CertificateData
+from contracts.academic_contract import AcademicSmartContract
+
 
 def main():
-    print("=" * 60)
-    print(" SISTEMA DE CERTIFICADOS ACADÊMICOS COM SMART CONTRACT & BLOCKCHAIN")
-    print("=" * 60)
+    print("=" * 65)
+    print("  SISTEMA DE CERTIFICADOS ACADÊMICOS — SMART CONTRACT & BLOCKCHAIN")
+    print("=" * 65)
 
     # 1. Inicializa Blockchain e Smart Contract
     difficulty = 3
@@ -18,7 +19,7 @@ def main():
     print(f"    Bloco Gênesis criado: {blockchain.blocks[0].hash}")
 
     # 2. Operação Válida: Emissão de Certificado pela Secretaria
-    print("\n[2] Executando OPERAÇÃO VÁLIDA: Secretaria emitindo certificado...")
+    print("\n[2] OPERAÇÃO VÁLIDA: Secretaria emitindo certificado...")
     doc_bytes = b"Diploma de Conclusao de Curso - Engenharia de Software - Aluno: Joao Silva"
     doc_hash = hashlib.sha256(doc_bytes).hexdigest()
 
@@ -41,7 +42,7 @@ def main():
         print(f"    ❌ Erro: {e}")
 
     # 3. Operação Inválida: Usuário sem permissão tenta emitir
-    print("\n[3] Executando OPERAÇÃO INVÁLIDA (Sem Permissão): Aluno tentando emitir...")
+    print("\n[3] OPERAÇÃO INVÁLIDA (Sem Permissão): Aluno tentando emitir...")
     try:
         cert_fake = CertificateData(
             cert_id="UEA-FAKE-001",
@@ -56,14 +57,14 @@ def main():
         print(f"    🛑 REJEIÇÃO CONFIRMADA PELO CONTRATO: {e}")
 
     # 4. Operação Inválida: Duplicidade de certificado
-    print("\n[4] Executando OPERAÇÃO INVÁLIDA (Duplicidade): Reemitir mesmo documento...")
+    print("\n[4] OPERAÇÃO INVÁLIDA (Duplicidade): Reemitir mesmo documento...")
     try:
         contract.issue_certificate("secretaria_uea", cert1)
     except ValueError as e:
         print(f"    🛑 REJEIÇÃO CONFIRMADA PELO CONTRATO: {e}")
 
     # 5. Consulta e Alteração de Estado (Revogação)
-    print("\n[5] Executando ALTERAÇÃO DE ESTADO: Revogando certificado por irregularidade...")
+    print("\n[5] ALTERAÇÃO DE ESTADO: Revogando certificado por irregularidade...")
     revoked_cert, msg = contract.revoke_certificate(
         caller_role="secretaria_uea",
         cert_id_or_hash="UEA-2026-ENG-001",
@@ -71,7 +72,7 @@ def main():
     )
     rev_block = blockchain.new_block(revoked_cert)
     blockchain.add_block(rev_block)
-    print(f"    ⚠️ {msg}")
+    print(f"    ⚠️  {msg}")
     print(f"    Alteração gravada no Bloco #{rev_block.index}. Hash: {rev_block.hash}")
 
     # 6. Consulta do estado atual
@@ -83,7 +84,8 @@ def main():
     print("\n[7] Verificando integridade da Blockchain...")
     print("    A Blockchain é válida?", "SIM ✅" if blockchain.is_blockchain_valid() else "NÃO ❌")
     print(f"    Total de blocos: {len(blockchain.blocks)}")
-    print("\n" + "=" * 60)
+    print("\n" + "=" * 65)
+
 
 if __name__ == "__main__":
     main()

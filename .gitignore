@@ -1,0 +1,33 @@
+# Dependências e ambientes virtuais
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+.env
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Uploads e arquivos temporários
+uploads/
+*.tmp
+*.log
+
+# Editores e IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Sistema Operacional
+.DS_Store
+Thumbs.db
+
+# Distribuição Python
+dist/
+build/
+*.egg-info/

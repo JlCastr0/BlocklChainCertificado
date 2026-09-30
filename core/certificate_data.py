@@ -1,10 +1,23 @@
+# core/certificate_data.py
 import json
 from datetime import datetime
 
+
 class CertificateData:
-    def __init__(self, cert_id, student_id, student_name, course, document_hash, issue_date=None, issuer="secretaria_uea", status="ATIVO"):
+    def __init__(
+        self,
+        cert_id,
+        student_id,
+        student_name,
+        course,
+        document_hash,
+        issue_date=None,
+        issuer="secretaria_uea",
+        status="ATIVO"
+    ):
         """
         Representa os dados de um certificado acadêmico armazenado na Blockchain.
+
         :param cert_id: Código único de registro do certificado (ex: CERT-2026-01)
         :param student_id: Matrícula do aluno
         :param student_name: Nome completo do aluno
@@ -32,19 +45,19 @@ class CertificateData:
             'document_hash': self.document_hash,
             'issue_date': self.issue_date,
             'issuer': self.issuer,
-            'status': self.status
+            'status': self.status,
         }
 
     def to_json(self):
         """
-        Converte os dados do certificado para JSON formatado
+        Converte os dados do certificado para JSON formatado.
         """
         return json.dumps(self.to_dict())
 
     @staticmethod
     def from_json(json_str):
         """
-        Recria uma instância de CertificateData a partir de string JSON
+        Recria uma instância de CertificateData a partir de string JSON.
         """
         data = json.loads(json_str)
         return CertificateData(
@@ -55,8 +68,13 @@ class CertificateData:
             document_hash=data.get('document_hash'),
             issue_date=data.get('issue_date'),
             issuer=data.get('issuer', 'secretaria_uea'),
-            status=data.get('status', 'ATIVO')
+            status=data.get('status', 'ATIVO'),
         )
 
     def __str__(self):
-        return f"Certificado [{self.cert_id}] - Aluno: {self.student_name} ({self.student_id}) - Curso: {self.course} - Status: {self.status} - Hash Doc: {self.document_hash[:16]}..."
+        return (
+            f"Certificado [{self.cert_id}] - "
+            f"Aluno: {self.student_name} ({self.student_id}) - "
+            f"Curso: {self.course} - Status: {self.status} - "
+            f"Hash Doc: {self.document_hash[:16]}..."
+        )

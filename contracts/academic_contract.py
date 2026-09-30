@@ -1,5 +1,7 @@
+# contracts/academic_contract.py
 from datetime import datetime
-from certificate_data import CertificateData
+from core.certificate_data import CertificateData
+
 
 class AcademicSmartContract:
     """
@@ -10,7 +12,7 @@ class AcademicSmartContract:
     def __init__(self, admin_role="secretaria_uea"):
         self.admin = admin_role
         self.authorized_issuers = {admin_role}
-        
+
         # Estado do contrato:
         # Mapeamento: document_hash -> dados do certificado
         self.certificates = {}
@@ -18,19 +20,22 @@ class AcademicSmartContract:
         self.cert_id_index = {}
 
     def is_authorized(self, caller_role):
-        """Verifica se o chamador possui permissão de emissor autorizado"""
+        """Verifica se o chamador possui permissão de emissor autorizado."""
         return caller_role in self.authorized_issuers
 
     def issue_certificate(self, caller_role, cert: CertificateData):
         """
-        Regra de Negócio 1: Emissão de Certificado
+        Regra de Negócio 1: Emissão de Certificado.
         - Valida permissão do emissor
         - Valida preenchimento dos campos obrigatórios
         - Valida unicidade (impede duplicidade de hash e código)
         """
         # Verificação de Permissão (Controle de Acesso)
         if not self.is_authorized(caller_role):
-            raise PermissionError(f"[Acesso Negado] O perfil '{caller_role}' não tem permissão para emitir certificados. Apenas emissores autorizados (Secretaria).")
+            raise PermissionError(
+                f"[Acesso Negado] O perfil '{caller_role}' não tem permissão para emitir "
+                "certificados. Apenas emissores autorizados (Secretaria)."
+            )
 
         # Validação de Dados Obrigatórios
         if not cert.cert_id or not cert.cert_id.strip():
@@ -47,10 +52,15 @@ class AcademicSmartContract:
         # Validação de Unicidade (Anti-duplicidade)
         if cert.document_hash in self.certificates:
             existing = self.certificates[cert.document_hash]
-            raise ValueError(f"[Operação Inválida] Este documento já foi registrado anteriormente com o código '{existing['cert_id']}'.")
+            raise ValueError(
+                f"[Operação Inválida] Este documento já foi registrado anteriormente "
+                f"com o código '{existing['cert_id']}'."
+            )
 
         if cert.cert_id in self.cert_id_index:
-            raise ValueError(f"[Operação Inválida] O código de certificado '{cert.cert_id}' já foi utilizado.")
+            raise ValueError(
+                f"[Operação Inválida] O código de certificado '{cert.cert_id}' já foi utilizado."
+            )
 
         # Atualização do Estado do Contrato
         cert.issuer = caller_role
@@ -62,23 +72,29 @@ class AcademicSmartContract:
 
     def revoke_certificate(self, caller_role, cert_id_or_hash, reason="Irregularidade ou cancelamento acadêmico"):
         """
-        Regra de Negócio 2: Revogação de Certificado (Demonstração de Alteração de Estado)
+        Regra de Negócio 2: Revogação de Certificado.
         - Valida permissão do emissor
         - Altera o estado do certificado para 'REVOGADO' sem apagar da blockchain
         """
         if not self.is_authorized(caller_role):
-            raise PermissionError(f"[Acesso Negado] O perfil '{caller_role}' não tem permissão para revogar certificados.")
+            raise PermissionError(
+                f"[Acesso Negado] O perfil '{caller_role}' não tem permissão para revogar certificados."
+            )
 
         # Localiza o certificado por código ou por hash
         doc_hash = self.cert_id_index.get(cert_id_or_hash, cert_id_or_hash)
 
         if doc_hash not in self.certificates:
-            raise KeyError(f"[Operação Inválida] Certificado '{cert_id_or_hash}' não encontrado no contrato.")
+            raise KeyError(
+                f"[Operação Inválida] Certificado '{cert_id_or_hash}' não encontrado no contrato."
+            )
 
         cert_data = self.certificates[doc_hash]
 
         if cert_data['status'] == "REVOGADO":
-            raise ValueError(f"[Operação Inválida] O certificado '{cert_data['cert_id']}' já se encontra revogado.")
+            raise ValueError(
+                f"[Operação Inválida] O certificado '{cert_data['cert_id']}' já se encontra revogado."
+            )
 
         # Altera estado no contrato
         cert_data['status'] = "REVOGADO"
@@ -100,7 +116,7 @@ class AcademicSmartContract:
 
     def verify_certificate(self, document_hash=None, cert_id=None):
         """
-        Regra de Negócio 3: Consulta e Validação de Autenticidade
+        Regra de Negócio 3: Consulta e Validação de Autenticidade.
         Retorna as informações do contrato se o certificado for autêntico.
         """
         doc_hash = None
@@ -123,5 +139,9 @@ class AcademicSmartContract:
             "valid": is_active,
             "status": cert_info.get('status'),
             "data": cert_info,
-            "message": "Certificado Válido e Ativo" if is_active else f"Certificado INVÁLIDO/REVOGADO! Motivo: {cert_info.get('revocation_reason', 'Não informado')}"
+            "message": (
+                "Certificado Válido e Ativo"
+                if is_active
+                else f"Certificado INVÁLIDO/REVOGADO! Motivo: {cert_info.get('revocation_reason', 'Não informado')}"
+            )
         }
