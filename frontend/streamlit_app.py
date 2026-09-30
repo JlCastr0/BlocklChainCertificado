@@ -305,11 +305,8 @@ if selected_tab == "📝 Registro":
 
                     st.success("✅ Certificado aprovado pelo Contrato Inteligente e gravado com sucesso!")
 
-                    col_r1, col_r2 = st.columns(2)
-                    with col_r1:
-                        st.info(f"**Bloco #{new_block.index}** minerado | Nonce: `{new_block.nonce}`")
-                    with col_r2:
-                        st.caption(f"Hash SHA-256 do Documento: `{doc_hash[:32]}...`")
+                    st.info(f"📦 **Bloco #{new_block.index}** minerado com sucesso | Nonce: `{new_block.nonce}`")
+                    st.info(f"🔑 **Hash SHA-256 do Documento:** `{doc_hash}`")
 
                     st.balloons()
 
@@ -377,7 +374,7 @@ elif selected_tab == "🔍 Consulta & Validação":
                 st.markdown(f"**Status:** :green[{data['status']}]")
                 st.markdown(f"**Emissor:** `{data['issuer']}`")
 
-            st.caption(f"Hash do Documento: `{data['document_hash']}`")
+            st.markdown(f"**Hash do Documento:** `{data['document_hash']}`")
 
             # Ação de Revogação (Apenas se logado como Secretaria)
             st.markdown("---")
