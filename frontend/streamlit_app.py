@@ -229,7 +229,7 @@ st.markdown("---")
 # Abas de Navegação
 # ─────────────────────────────────────────────
 tabs = ["📝 Registro", "🔍 Consulta & Validação", "⛓ Blockchain"]
-selected_tab = st.radio("", tabs, horizontal=True, label_visibility="collapsed")
+selected_tab = st.radio("Navegação", tabs, horizontal=True, label_visibility="collapsed")
 
 # ─────────────────────────────────────────────
 # ABA 1: REGISTRO (EMISSÃO)
