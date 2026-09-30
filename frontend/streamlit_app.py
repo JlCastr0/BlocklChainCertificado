@@ -174,8 +174,8 @@ with st.sidebar:
         "Perfil Ativo (Simulação):",
         options=["secretaria_uea", "aluno_publico"],
         format_func=lambda x: (
-            "🏛️ Secretaria Acadêmica (Admin)" if x == "secretaria_uea"
-            else "🎓 Aluno / Público (Sem Permissão)"
+            "🏛️ Secretaria Acadêmica" if x == "secretaria_uea"
+            else "🎓 Aluno / Público"
         )
     )
 
