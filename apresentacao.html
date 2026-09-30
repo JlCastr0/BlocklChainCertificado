@@ -604,38 +604,55 @@
       </table>
     </section>
 
-    <!-- SLIDE 6: ARQUITETURA DO SISTEMA -->
+    <!-- SLIDE 6: ARQUITETURA DO SISTEMA & TECNOLOGIAS -->
     <section class="slide" data-index="5">
-      <div class="slide-badge">Arquitetura de Software</div>
-      <h1 class="slide-title">5. Arquitetura da Aplicação</h1>
-      <p class="slide-subtitle">Três camadas desacopladas garantindo regras de negócio, interface amigável e consenso
-        criptográfico.</p>
+      <div class="slide-badge">Arquitetura & Tecnologias</div>
+      <h1 class="slide-title">5. Arquitetura da Aplicação & Tecnologias</h1>
+      <p class="slide-subtitle">Estrutura em camadas desacopladas e tecnologias comuns que sustentam a solução.</p>
 
-      <div class="arch-flow">
-        <div class="arch-node">
-          <h4 style="color: var(--primary);">Camada 1: Frontend</h4>
-          <p style="font-size: 0.9rem; margin-top: 0.5rem;">Interface Streamlit com abas para <strong>Registro</strong>,
-            <strong>Consulta & Validação</strong> e <strong>Inspeção da Blockchain</strong>.
-          </p>
+      <div class="grid-3">
+        <div class="card primary">
+          <div style="margin-bottom: 0.6rem;">
+            <span class="tag tag-primary">Streamlit</span>
+            <span class="tag tag-primary">Python</span>
+          </div>
+          <h3 style="color: var(--primary);">Camada 1: Frontend</h3>
+          <ul>
+            <li><strong>Streamlit:</strong> Framework em Python para construção de interface web interativa e reativa.</li>
+            <li>Abas dedicadas para <strong>Registro</strong>, <strong>Consulta & Validação</strong> e <strong>Inspeção da Blockchain</strong>.</li>
+            <li>Interação visual dinâmica sem complexidade de recarregamento.</li>
+          </ul>
         </div>
-        <div class="arch-arrow">➔</div>
-        <div class="arch-node highlighted">
-          <h4 style="color: var(--accent);">Camada 2: Smart Contract</h4>
-          <p style="font-size: 0.9rem; margin-top: 0.5rem;"><code>AcademicSmartContract</code>: Script que valida
-            permissões, impede duplicidades e gerencia o estado antes da mineração.</p>
+
+        <div class="card warning">
+          <div style="margin-bottom: 0.6rem;">
+            <span class="tag" style="background: rgba(251, 191, 36, 0.2); color: var(--warning);">Flask</span>
+            <span class="tag" style="background: rgba(251, 191, 36, 0.2); color: var(--warning);">Werkzeug</span>
+          </div>
+          <h3 style="color: var(--warning);">Camada 2: API & Serviços</h3>
+          <ul>
+            <li><strong>Flask & Werkzeug:</strong> Microframework para camada de serviços e rotas HTTP/REST.</li>
+            <li>Endpoints para mineração, validação e consulta dos nós via JSON.</li>
+            <li>Permite integração desacoplada com clientes e sistemas externos.</li>
+          </ul>
         </div>
-        <div class="arch-arrow">➔</div>
-        <div class="arch-node">
-          <h4 style="color: var(--success);">Camada 3: Blockchain Local</h4>
-          <p style="font-size: 0.9rem; margin-top: 0.5rem;">Motor de mineração <em>Proof-of-Work</em>, encadeamento de
-            hashes SHA-256 e verificação contínua de integridade.</p>
+
+        <div class="card success">
+          <div style="margin-bottom: 0.6rem;">
+            <span class="tag tag-success">SHA-256</span>
+            <span class="tag tag-success">Proof-of-Work</span>
+          </div>
+          <h3 style="color: var(--success);">Camada 3: Motor & Consenso</h3>
+          <ul>
+            <li><strong>SHA-256 (hashlib):</strong> Função criptográfica garantindo integridade dos dados e o elo entre blocos.</li>
+            <li><strong>Proof-of-Work (PoW):</strong> Mineração com controle de <code>nonce</code> e ajuste de dificuldade.</li>
+            <li>Livro-razão <em>append-only</em> matematicamente inviolável.</li>
+          </ul>
         </div>
       </div>
 
-      <div class="callout">
-        <p><strong>Princípio de Isolamento:</strong> A Blockchain nunca recebe uma transação direta da interface. Toda
-          operação é obrigatoriamente filtrada e aprovada pelo Contrato Inteligente antes de iniciar o processo de
-          mineração.</p>
+      <div class="callout" style="margin-top: 1.25rem;">
+        <p><strong>Stack Tecnológica Unificada:</strong> Toda a solução opera em <strong>Python 3</strong>, integrando <strong>Streamlit</strong> para a interface do usuário, <strong>Flask</strong> para a camada de serviços REST e <strong>SHA-256 com Proof-of-Work</strong> para assegurar o consenso e a imutabilidade criptográfica da rede.</p>
       </div>
     </section>
 
