@@ -37,7 +37,7 @@ def hash_file_data(file_bytes):
 @app.route('/')
 def index():
     return jsonify({
-        'system': 'Blockchain de Certificados Acadêmicos — UEA',
+        'system': 'Blockchain de Certificados Acadêmicos - UEA',
         'status': 'online',
         'endpoints': {
             'POST /issue': 'Emissão de certificado (requer permissão de secretaria)',

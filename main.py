@@ -8,7 +8,7 @@ from contracts.academic_contract import AcademicSmartContract
 
 def main():
     print("=" * 65)
-    print("  SISTEMA DE CERTIFICADOS ACADÊMICOS — SMART CONTRACT & BLOCKCHAIN")
+    print("  SISTEMA DE CERTIFICADOS ACADÊMICOS - SMART CONTRACT & BLOCKCHAIN")
     print("=" * 65)
 
     # 1. Inicializa Blockchain e Smart Contract
