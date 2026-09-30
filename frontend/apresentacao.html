@@ -7,21 +7,22 @@
   <title>Apresentação: Blockchain de Certificados Acadêmicos - UEA</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
   <style>
     :root {
-      --bg:          #060d0d;
-      --card-bg:     #0c1a1a;
+      --bg: #060d0d;
+      --card-bg: #0c1a1a;
       --card-border: #163636;
-      --text:        #e8fdf5;
-      --text-muted:  #5eead4;
-      --primary:     #10b981;
-      --primary-dark:#059669;
-      --accent:      #34d399;
-      --glow:        rgba(16, 185, 129, 0.25);
-      --success:     #22c55e;
-      --danger:      #f87171;
-      --warning:     #fbbf24;
+      --text: #e8fdf5;
+      --text-muted: #5eead4;
+      --primary: #10b981;
+      --primary-dark: #059669;
+      --accent: #34d399;
+      --glow: rgba(16, 185, 129, 0.25);
+      --success: #22c55e;
+      --danger: #f87171;
+      --warning: #fbbf24;
     }
 
     * {
@@ -138,8 +139,17 @@
     }
 
     @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.8); }
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.5;
+        transform: scale(0.8);
+      }
     }
 
     h1.slide-title {
@@ -423,8 +433,15 @@
     }
 
     @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
+
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
     }
 
     /* Stat Box no Slide 2 */
@@ -576,13 +593,28 @@
       animation: block-glow 2.5s ease-in-out infinite;
     }
 
-    .chain-block:nth-child(3) { animation-delay: 0.3s; }
-    .chain-block:nth-child(5) { animation-delay: 0.6s; }
-    .chain-block:nth-child(7) { animation-delay: 0.9s; }
+    .chain-block:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    .chain-block:nth-child(5) {
+      animation-delay: 0.6s;
+    }
+
+    .chain-block:nth-child(7) {
+      animation-delay: 0.9s;
+    }
 
     @keyframes block-glow {
-      0%, 100% { box-shadow: 0 0 6px rgba(16, 185, 129, 0.2); }
-      50% { box-shadow: 0 0 14px rgba(16, 185, 129, 0.5); }
+
+      0%,
+      100% {
+        box-shadow: 0 0 6px rgba(16, 185, 129, 0.2);
+      }
+
+      50% {
+        box-shadow: 0 0 14px rgba(16, 185, 129, 0.5);
+      }
     }
 
     .chain-link {
@@ -604,9 +636,17 @@
     }
 
     @keyframes flow {
-      0% { opacity: 0.3; }
-      50% { opacity: 1; }
-      100% { opacity: 0.3; }
+      0% {
+        opacity: 0.3;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0.3;
+      }
     }
   </style>
 </head>
@@ -651,21 +691,21 @@
     <section class="slide" data-index="1">
       <div class="slide-badge">Contexto &amp; Motivação</div>
       <h1 class="slide-title">1. O Problema</h1>
-      <p class="slide-subtitle">A fragilidade crônica dos modelos tradicionais de emissão e conferência de diplomas.</p>
+      <p class="slide-subtitle">A fragilidade dos modelos tradicionais de emissão e conferência de diplomas.</p>
 
       <div class="stat-alert">
-        <h4>⚠ Dado de Impacto Real (MEC / Polícia Federal)</h4>
-        <p>Estudos e operações policiais recentes estimam que <strong>mais de 100.000 diplomas e certificados
-            falsos</strong> circulam anualmente no Brasil. Esquemas fraudulentos negociam documentos adulterados por
-          valores entre R$ 2.000 e R$ 20.000, provocando riscos severos em áreas críticas como saúde, direito e
-          engenharia.</p>
+        <h4>⚠ Dado</h4>
+        <p>Investigações oficiais revelam redes de falsificação de documentos acadêmicos no Brasil, incluindo o
+          cancelamento de mais de 65 mil registros universitários irregulares e operações voltadas a combater a venda de
+          diplomas falsos de medicina e fraudes em conselhos profissionais (AGÊNCIA BRASIL EBC, 2025).
+        </p>
       </div>
 
       <div class="grid-3">
         <div class="card danger">
           <h3>🔓 Fraude Documental Simples</h3>
-          <p>Diplomas em PDF ou papel são facilmente adulterados com editores visuais básicos. Notas, nomes e cursos são
-            trocados sem deixar vestígios visíveis a olho nu.</p>
+          <p>Diplomas em PDF ou papel são facilmente adulterados com softwares de edição. Notas, nomes e cursos são
+            trocados sem deixar vestígios de fácil identificação.</p>
         </div>
         <div class="card danger">
           <h3>⏳ Validação Manual e Lenta</h3>
@@ -674,8 +714,8 @@
         </div>
         <div class="card danger">
           <h3>🎯 Ponto Central de Falha</h3>
-          <p>Bancos de dados relacionais convencionais (SQL) possuem controle centralizado. Um administrador com acesso
-            root pode inserir, alterar ou deletar registros históricos sem auditoria externa.</p>
+          <p>Bancos de dados relacionais possuem controle centralizado. Um administrador com acesso
+            root pode inserir, alterar ou deletar registros históricos de certificados sem auditoria externa.</p>
         </div>
       </div>
     </section>
@@ -683,7 +723,7 @@
     <!-- SLIDE 3: A SOLUÇÃO -->
     <section class="slide" data-index="2">
       <div class="slide-badge">A Abordagem Proposta</div>
-      <h1 class="slide-title">2. A Solução: Registro em Blockchain</h1>
+      <h1 class="slide-title">2. A Solução: Registro de Certificados em Blockchain</h1>
       <p class="slide-subtitle">Como nossa aplicação resolve o problema de ponta a ponta.</p>
 
       <div class="grid-2">
@@ -692,9 +732,10 @@
           <ul>
             <li>Cada diploma em PDF gera uma impressão digital matemática exclusiva via <strong>Hash SHA-256</strong>.
             </li>
-            <li>A alteração de uma única vírgula ou pixel no documento modifica completamente o hash (efeito avalanche).
+            <li>A alteração de uma única vírgula ou pixel no documento modifica completamente o hash.
             </li>
-            <li>O hash é minerado e selado em um bloco com <em>Proof-of-Work</em>, tornando a prova temporal inviolável.
+            <li>O hash do certificado é minerado e guardado em um bloco com <em>Proof-of-Work</em>, permitindo sua
+              imutabilidade.
             </li>
           </ul>
         </div>
@@ -703,9 +744,9 @@
           <ul>
             <li>Qualquer empregador ou instituição pode submeter o arquivo do certificado diretamente na interface web.
             </li>
-            <li>O sistema calcula o hash do arquivo enviado em milissegundos e pesquisa o estado na Blockchain.</li>
-            <li>Retorna de imediato se o documento é <strong>Legítimo</strong>, <strong>Revogado</strong> ou
-              <strong>Falso/Adulterado</strong>.
+            <li>O sistema calcula o hash do arquivo enviado e pesquisa o estado na Blockchain.</li>
+            <li>Retorna de imediato se o documento é <strong>Válido</strong>, <strong>Revogado</strong> ou
+              <strong>Inválido</strong>.
             </li>
           </ul>
         </div>
@@ -716,7 +757,7 @@
     <section class="slide" data-index="3">
       <div class="slide-badge">Justificativa Técnica</div>
       <h1 class="slide-title">3. Por que Blockchain e não Banco de Dados Comum?</h1>
-      <p class="slide-subtitle">Comparativo direto entre as garantias de uma Blockchain e de um banco de dados
+      <p class="slide-subtitle">Comparativo entre as características de uma Blockchain e de um banco de dados
         centralizado.</p>
 
       <div class="grid-2">
@@ -727,7 +768,7 @@
               ou fraudados retroativamente.</li>
             <li>Um invasor com credenciais administrativas pode forjar registros de conclusão de curso sem deixar
               rastros consistentes.</li>
-            <li>Auditoria externa depende totalmente da confiança cega no departamento de TI da entidade.</li>
+            <li>Auditoria externa depende bastante da confiança no departamento de TI da entidade.</li>
           </ul>
         </div>
         <div class="card success">
@@ -736,8 +777,8 @@
             <li><strong>Natureza Append-Only (Apenas Gravação):</strong> É impossível deletar ou alterar dados de blocos
               já minerados.</li>
             <li><strong>Encadeamento Criptográfico:</strong> Cada bloco guarda o hash do anterior. Alterar um bloco
-              corrompe toda a cadeia matemática.</li>
-            <li><strong>Carimbo de Tempo Auditável (Timestamp):</strong> Prova definitiva de que o diploma foi emitido
+              corrompe toda a blockchain.</li>
+            <li><strong>Carimbo de Tempo Auditável (Timestamp):</strong> Prova de que o certificado foi emitido
               oficialmente naquela data exata.</li>
           </ul>
         </div>
@@ -765,7 +806,8 @@
             <td><span class="tag tag-success">On-Chain</span></td>
             <td><strong>Hash SHA-256 do Documento</strong></td>
             <td>Dentro do Bloco</td>
-            <td><strong>Prova Matemática &amp; Leveza:</strong> Ocupa apenas 64 caracteres hexadecimais (32 bytes). Garante
+            <td><strong>Prova Matemática &amp; Leveza:</strong> Ocupa apenas 64 caracteres hexadecimais (32 bytes).
+              Garante
               a integridade absoluta do arquivo original sem sobrecarregar os blocos.</td>
           </tr>
           <tr>
@@ -814,16 +856,21 @@
           </div>
           <h3 style="color: var(--primary);">🖥 Camada 1: Frontend</h3>
           <ul>
-            <li><strong>Streamlit:</strong> Framework em Python para construção de interface web interativa e reativa.</li>
-            <li>Abas dedicadas para <strong>Registro</strong>, <strong>Consulta &amp; Validação</strong> e <strong>Inspeção da Blockchain</strong>.</li>
+            <li><strong>Streamlit:</strong> Framework em Python para construção de interface web interativa e reativa.
+            </li>
+            <li>Abas dedicadas para <strong>Registro</strong>, <strong>Consulta &amp; Validação</strong> e
+              <strong>Inspeção da Blockchain</strong>.
+            </li>
             <li>Interação visual dinâmica sem complexidade de recarregamento.</li>
           </ul>
         </div>
 
         <div class="card warning">
           <div style="margin-bottom: 0.6rem;">
-            <span class="tag" style="background: rgba(251, 191, 36, 0.15); color: var(--warning); border: 1px solid rgba(251,191,36,0.25);">Flask</span>
-            <span class="tag" style="background: rgba(251, 191, 36, 0.15); color: var(--warning); border: 1px solid rgba(251,191,36,0.25);">Werkzeug</span>
+            <span class="tag"
+              style="background: rgba(251, 191, 36, 0.15); color: var(--warning); border: 1px solid rgba(251,191,36,0.25);">Flask</span>
+            <span class="tag"
+              style="background: rgba(251, 191, 36, 0.15); color: var(--warning); border: 1px solid rgba(251,191,36,0.25);">Werkzeug</span>
           </div>
           <h3 style="color: var(--warning);">🔌 Camada 2: API &amp; Serviços</h3>
           <ul>
@@ -840,15 +887,21 @@
           </div>
           <h3 style="color: var(--success);">⛓ Camada 3: Motor &amp; Consenso</h3>
           <ul>
-            <li><strong>SHA-256 (hashlib):</strong> Função criptográfica garantindo integridade dos dados e o elo entre blocos.</li>
-            <li><strong>Proof-of-Work (PoW):</strong> Mineração com controle de <code>nonce</code> e ajuste de dificuldade.</li>
+            <li><strong>SHA-256 (hashlib):</strong> Função criptográfica garantindo integridade dos dados e o elo entre
+              blocos.</li>
+            <li><strong>Proof-of-Work (PoW):</strong> Mineração com controle de <code>nonce</code> e ajuste de
+              dificuldade.</li>
             <li>Livro-razão <em>append-only</em> matematicamente inviolável.</li>
           </ul>
         </div>
       </div>
 
       <div class="callout" style="margin-top: 1.25rem;">
-        <p><strong>Stack Tecnológica Unificada:</strong> Toda a solução opera em <strong>Python 3</strong>, integrando <strong>Streamlit</strong> para a interface do usuário, <strong>Flask</strong> para a camada de serviços REST e <strong>SHA-256 com Proof-of-Work</strong> para assegurar o consenso e a imutabilidade criptográfica da rede.</p>
+        <p><strong>Stack Tecnológica Unificada:</strong> Toda a solução opera em <strong>Python 3</strong>, integrando
+          <strong>Streamlit</strong> para a interface do usuário, <strong>Flask</strong> para a camada de serviços REST
+          e <strong>SHA-256 com Proof-of-Work</strong> para assegurar o consenso e a imutabilidade criptográfica da
+          rede.
+        </p>
       </div>
     </section>
 
